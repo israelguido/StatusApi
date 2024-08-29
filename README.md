@@ -1,43 +1,70 @@
 # StatusApi
 
-O módulo **StatusApi** é uma extensão para o Magento que permite listar os status de pedidos criados na plataforma. Esses status são usados para gerenciar o fluxo de pedidos no Magento, facilitando o controle e automação dos processos de compra.
+The **StatusApi** module is an extension for Magento that allows you to list order statuses created in the platform. These statuses are used to manage the order flow in Magento, making it easier to control and automate purchasing processes.
 
-## Funcionalidades
+## Features
 
-- Listar todos os status de pedidos configurados no Magento.
-- Simplificar a integração de sistemas externos que precisam consultar os status de pedidos.
+- List all order statuses configured in Magento.
+- Simplify integration with external systems that need to query order statuses.
 
-## Requisitos
+## Requirements
 
-- Magento 2.4.x
+- Magento 2.x
 
-## Instalação
+## Installation
 
-Siga os passos abaixo para instalar o módulo **StatusApi**:
+Follow the steps below to install the **StatusApi** module:
 
-1. Clone o repositório para o diretório `app/code/IsraelGuido/StatusApi` do seu Magento:
+1. Clone the repository into the `app/code/CyberFire/StatusApi` directory of your Magento installation:
     ```bash
     git clone https://github.com/israelguido/StatusApi.git app/code/CyberFire/StatusApi
     ```
 
-2. Habilite o módulo:
+2. Enable the module:
     ```bash
     php bin/magento module:enable CyberFire_StatusApi
     ```
 
-3. Atualize o banco de dados:
+3. Update the database:
     ```bash
     php bin/magento setup:upgrade
     ```
 
-4. Limpe o cache do Magento:
+4. Clear Magento cache:
     ```bash
     php bin/magento cache:clean
     php bin/magento cache:flush
     ```
 
-## Uso
+## Usage
 
-Após a instalação, o módulo disponibiliza uma API que pode ser acessada através do endpoint:
+After installation, the module provides an API accessible via the endpoint:
+
+``` /rest/V1/statusapi ``` 
 
 
+### Request Example
+
+To get the list of order statuses, make a GET request to the endpoint above:
+
+```bash
+curl -X GET "https://your-domain.com/rest/V1/statusapi" -H "Authorization: Bearer <your_token>"
+```
+
+### Response Example
+```
+[
+    {
+        "status": "pending",
+        "label": "Pending"
+    },
+    {
+        "status": "processing",
+        "label": "Processing"
+    },
+    {
+        "status": "complete",
+        "label": "Complete"
+    }
+]
+```
